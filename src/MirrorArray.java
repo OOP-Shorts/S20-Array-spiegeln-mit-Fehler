@@ -12,9 +12,12 @@ public class MirrorArray {
     public static int[] getMirroredArray(int[] values) {
         int[] mirroredArray = new int[values.length * 2];
 
-        for (int i = 0; i < values.length * 2; i++) {
+        // Lässt man die for-Schleife bis values.length * 2 durchiterieren so entsteht ein Fehler, weil das originale
+        // values-Array zu klein ist und der Index i deshalb irgendwann außerhalb der Array-Grenzen liegt.
+        for (int i = 0; i < values.length; i++) {
             mirroredArray[i] = values[i];
-            mirroredArray[values.length - 1 + i] = values[values.length - 1 - i];
+            // Wird von values.length hier 1 abgezogen, wird der Wert an der Position values.length - 1 überschrieben.
+            mirroredArray[values.length + i] = values[values.length - 1 - i];
         }
 
         return mirroredArray;
